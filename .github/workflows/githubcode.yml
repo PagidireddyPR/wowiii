@@ -23,13 +23,17 @@ jobs:
         with:
           node-version: '14'
 
-      # Step 3: Install dependencies
+      # Step 3: Navigate to the app directory (if applicable) and install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd app  # If your package.json is in the app subdirectory
+          npm install
 
-      # Step 4: Run unit tests
+      # Step 4: Run tests
       - name: Run tests
-        run: npm test
+        run: |
+          cd app  # Again, if the tests are in the app subdirectory
+          npm test
 
       # Step 5: Deploy to Azure (only if tests pass)
       - name: Deploy to Azure
